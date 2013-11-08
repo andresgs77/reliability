@@ -1,0 +1,16 @@
+<trace>
+<ro>http://sandbox.wf4ever-project.org/rodl/ROs/Y2DemoStep27/</ro>
+<evaluations>
+<eval result="pass">
+<date>2013,4,12,11,54</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="true">Workflow design sketch is present</rule>
+<rule type="must" pass="true">All workflow definitions are accessible</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="true">Input data is present</rule>
+<rule type="should" pass="true">Experiment conclusions are present</rule>
+</rules>
+</eval>
+</evaluations>
+</trace>

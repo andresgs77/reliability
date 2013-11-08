@@ -1,0 +1,937 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script src="highcharts.js"></script>
+<script src="highstock.js"></script>
+<script src="exporting.js"></script>
+<title>Analytics and Quality Report</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+
+<script>
+ var global_roUI;
+ var global_analytics;
+ var global_snapshotSelected;
+ var snapshotsList = [];
+ var numOfChangesList = [];
+ var checklistValuesList = [];
+ var usersEvaluationList = [];
+ var stabilityValue;
+ var avgValue;
+//
+ var checklistTrace = [];
+ var snapshotsTrace = [];
+ var archivedTrace = [];
+ var globalJSON;
+ var selectedTrace;
+ var globalSelectedChecklist1="empty";
+</script>
+
+<!-- Info Snapshot ----------------------------------------------------------------------------------------------------->
+<script>
+function fillSnapshotInfo(json, typeSelection){
+	/* ï¿½sto para si quiero meter scroll
+	document.getElementById("snapshotInfo").style.height = "150px";
+	document.getElementById("snapshotInfo").style.overflow = "auto";
+	*/
+	document.getElementById("snapshotInfo").style.width = "40%";
+	document.getElementById("snapshotInfo").style.float = "right";
+	document.getElementById("snapshotInfo").style.marginRight = "10px";
+	document.getElementById("snapshotInfo").style.background = "rgba(130, 130, 130, 0.1)";
+	document.getElementById("snapshotInfo").style.borderRadius = "1em";
+	
+	
+	//Tï¿½tulo
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">"+typeSelection+" info:</h2>";
+	htmlInterno=htmlInterno + "<p align=\"center\"><a href=\""+json.ro+"\">Resource</a></p><br>";
+	htmlInterno = htmlInterno + "<p style=\"padding-left:10px\"><h3 align=\"left\"style=\"padding-left:10px\">Author, date:</h3>";
+	htmlInterno = htmlInterno+ "<ul style=\"padding-left:30px; font-size:12px\">";
+	//htmlInterno = htmlInterno + "<li>"+json.author+"</li>";
+	htmlInterno = htmlInterno + "<li>Marco Roos</li>";
+	//htmlInterno = htmlInterno + "<li>"+json.date+"</li>";
+	htmlInterno = htmlInterno + "<li>2013-02-13</li>";
+	htmlInterno = htmlInterno + "</ul></p><br>";
+	
+	var aux;
+	//Additions
+	if (json.additions!=null){
+		htmlInterno = htmlInterno+"<p style=\"padding-left:10px\"><h3 align=\"left\"style=\"padding-left:10px\">Additions:</h3>";
+		htmlInterno = htmlInterno+ "<ul style=\"padding-left:30px; font-size:12px\">";
+		if (!jQuery.isArray(json.additions.resource))  json.additions.resource = [json.additions.resource];
+		for(var i = 0, len = json.additions.resource.length; i < len; ++i){
+			aux = "..." + json.additions.resource[i].substring(json.additions.resource[i].length - 35);
+			htmlInterno = htmlInterno + "<li><a href=\""+json.additions.resource[i]+"\" target=\"_blank\">" + aux + "</a></li>";
+		}
+		htmlInterno = htmlInterno + "</ul></p><br>";
+	}
+	
+	
+	//Modifications
+	if (json.modifications!=null){
+		htmlInterno = htmlInterno+"<p style=\"padding-left:10px\"><h3 align=\"left\"style=\"padding-left:10px\">Modifications:</h3>";
+		htmlInterno = htmlInterno+ "<ul style=\"padding-left:30px; font-size:12px\">";
+		if (!jQuery.isArray(json.modifications.resource))  json.modifications.resource = [json.modifications.resource];
+		for(var i = 0, len = json.modifications.resource.length; i < len; ++i){
+			aux = "..." + json.modifications.resource[i].substring(json.modifications.resource[i].length - 35);
+			htmlInterno = htmlInterno + "<li><a href=\""+json.modifications.resource[i]+"\" target=\"_blank\">" + aux + "</a></li>";
+		}
+		htmlInterno = htmlInterno + "</ul></p><br>";
+	}
+	
+	//Removals
+	if (json.removals!=null){
+		htmlInterno = htmlInterno+"<p style=\"padding-left:10px\"><h3 align=\"left\"style=\"padding-left:10px\">Removals:</h3>";
+		htmlInterno = htmlInterno+ "<ul style=\"padding-left:30px; font-size:12px\">";
+		if (!jQuery.isArray(json.removals.resource))  json.removals.resource = [json.removals.resource];
+		for(var i = 0, len = json.removals.resource.length; i < len; ++i){
+			aux = "..." + json.removals.resource[i].substring(json.removals.resource[i].length - 35);
+			htmlInterno = htmlInterno + "<li><a href=\""+json.removals.resource[i]+"\" target=\"_blank\">" + aux + "</a></li>";
+		}
+		htmlInterno = htmlInterno + "</ul></p><br>";
+	}
+	
+	//
+	document.getElementById("snapshotInfo").innerHTML=htmlInterno;
+	$("#snapshotInfo").hide("fast");
+	$("#snapshotInfo").show("slow");
+}
+</script>
+
+<!-- Evaluaciï¿½n Snapshot ----------------------------------------------------------------------------------------------------->
+<script>
+function evalList(numSelected){
+	//selected checklist
+	var selectedCheck = globalJSON.eval[numSelected];
+
+	document.getElementById("snapshotEval").style.width = "55%";
+	document.getElementById("snapshotEval").style.float = "left";
+	document.getElementById("snapshotEval").style.marginLeft = "10px";
+	document.getElementById("snapshotEval").style.background = "rgba(130, 130, 130, 0.1)";
+	document.getElementById("snapshotEval").style.borderRadius = "1em";
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Checklist Report</h2>";
+	var f = selectedCheck.date.split(",");
+	htmlInterno=htmlInterno+"<p align=\"center\"style=\"font-size:12px\">"+"Date, time: "+parseInt(f[0])+"/"+parseInt(f[1])+"/"+parseInt(f[2])+", "+parseInt(f[3])+":"+parseInt(f[4])+"h</p><br>";
+	
+	//images
+	var imgAux;
+	var imgOk="<IMG SRC=\"images/ok1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrong="<IMG SRC=\"images/wrong2.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrongShould="<IMG SRC=\"images/wrong1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	
+	//insert properties into array
+	var innerArray = [];
+	for (property in selectedCheck.desc) {
+		innerArray.push(selectedCheck.desc[property]);
+	}
+	
+	//for... to decide wich image to put.
+	htmlInterno=htmlInterno+"<p style=\"padding-left:3%;\">";
+	for (var i = 0, len = innerArray.length; i < len; ++i){
+	if (innerArray[i][1]=="true") imgAux=imgOk;
+		else  if (innerArray[i][1]=="should")imgAux=imgWrongShould;
+			else imgAux=imgWrong;
+	htmlInterno=htmlInterno+imgAux+innerArray[i][0]+'<br><br>';
+	}
+	htmlInterno=htmlInterno+"</p>";
+	
+	document.getElementById("snapshotEval").innerHTML=htmlInterno;
+	$("#snapshotEval1").hide("fast");
+	$("#snapshotEval2").hide("fast");
+	$("#snapshotEval").hide("fast");
+	$("#snapshotEval").show("slow");
+}
+
+</script>
+
+<!----Compare Evaluations------------------------------------------------------------------------------------------------------->
+<script>
+function compareChecklists(numSelected){
+	//selected checklist
+	var selectedCheck = globalJSON.eval[globalSelectedChecklist1];
+
+	document.getElementById("snapshotEval1").style.width = "48%";
+	document.getElementById("snapshotEval1").style.float = "left";
+	document.getElementById("snapshotEval1").style.marginLeft = "10px";
+	document.getElementById("snapshotEval1").style.background = "rgba(130, 130, 200, 0.1)";
+	document.getElementById("snapshotEval1").style.borderRadius = "1em";
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Checklist Report 1</h2>";
+	var f = selectedCheck.date.split(",");
+	htmlInterno=htmlInterno+"<p align=\"center\"style=\"font-size:12px\">"+"Date, time: "+parseInt(f[0])+"/"+parseInt(f[1])+"/"+parseInt(f[2])+", "+parseInt(f[3])+":"+parseInt(f[4])+"h</p><br>";
+	
+	//images
+	var imgAux;
+	var imgOk="<IMG SRC=\"images/ok1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrong="<IMG SRC=\"images/wrong2.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrongShould="<IMG SRC=\"images/wrong1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	
+	//insert properties into array
+	var innerArray = [];
+	for (property in selectedCheck.desc) {
+		innerArray.push(selectedCheck.desc[property]);
+	}
+	
+	//for... to decide wich image to put.
+	htmlInterno=htmlInterno+"<p style=\"padding-left:3%;\">";
+	for (var i = 0, len = innerArray.length; i < len; ++i){
+	if (innerArray[i][1]=="true") imgAux=imgOk;
+		else  if (innerArray[i][1]=="should")imgAux=imgWrongShould;
+			else imgAux=imgWrong;
+	htmlInterno=htmlInterno+imgAux+innerArray[i][0]+'<br><br>';
+	}
+	htmlInterno=htmlInterno+"</p>";
+	
+	document.getElementById("snapshotEval1").innerHTML=htmlInterno;
+	
+	//selected checklist2
+	selectedCheck = globalJSON.eval[numSelected];
+
+	document.getElementById("snapshotEval2").style.width = "48%";
+	document.getElementById("snapshotEval2").style.float = "right";
+	document.getElementById("snapshotEval2").style.marginRight = "10px";
+	document.getElementById("snapshotEval2").style.background = "rgba(200, 130, 130, 0.1)";
+	document.getElementById("snapshotEval2").style.borderRadius = "1em";
+	htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Checklist Report 2</h2>";
+	f = selectedCheck.date.split(",");
+	htmlInterno=htmlInterno+"<p align=\"center\"style=\"font-size:12px\">"+"Date, time: "+parseInt(f[0])+"/"+parseInt(f[1])+"/"+parseInt(f[2])+", "+parseInt(f[3])+":"+parseInt(f[4])+"h</p><br>";
+
+	
+	//insert properties into array
+	innerArray = [];
+	for (property in selectedCheck.desc) {
+		innerArray.push(selectedCheck.desc[property]);
+	}
+	
+	//for... to decide wich image to put.
+	htmlInterno=htmlInterno+"<p style=\"padding-left:3%;\">";
+	for (var i = 0, len = innerArray.length; i < len; ++i){
+	if (innerArray[i][1]=="true") imgAux=imgOk;
+		else  if (innerArray[i][1]=="should")imgAux=imgWrongShould;
+			else imgAux=imgWrong;
+	htmlInterno=htmlInterno+imgAux+innerArray[i][0]+'<br><br>';
+	}
+	htmlInterno=htmlInterno+"</p>";
+	
+	document.getElementById("snapshotEval2").innerHTML=htmlInterno;
+	$("#leftBox").hide("fast");
+	$("#snapshotInfo").hide("fast");
+	$("#snapshotEval").hide("fast");
+	$("#snapshotEval1").hide("fast");
+	$("#snapshotEval1").show("slow");
+	$("#snapshotEval2").hide("fast");
+	$("#snapshotEval2").show("slow");
+	globalSelectedChecklist1="empty";//la próxima vez que seleccionemos se empezamos de 0
+	
+}
+</script>
+
+<script>
+function compareChecklist1(numSelected){
+var selectedCheck = globalJSON.eval[numSelected];
+
+	document.getElementById("snapshotEval1").style.width = "48%";
+	document.getElementById("snapshotEval1").style.float = "left";
+	document.getElementById("snapshotEval1").style.marginLeft = "10px";
+	document.getElementById("snapshotEval1").style.background = "rgba(130, 130, 200, 0.1)";
+	document.getElementById("snapshotEval1").style.borderRadius = "1em";
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Checklist Report A</h2>";
+	var f = selectedCheck.date.split(",");
+	htmlInterno=htmlInterno+"<p align=\"center\"style=\"font-size:12px\">"+"Date, time: "+parseInt(f[0])+"/"+parseInt(f[1])+"/"+parseInt(f[2])+", "+parseInt(f[3])+":"+parseInt(f[4])+"h</p><br>";
+	
+	//images
+	var imgAux;
+	var imgOk="<IMG SRC=\"images/ok1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrong="<IMG SRC=\"images/wrong2.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrongShould="<IMG SRC=\"images/wrong1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	
+	//insert properties into array
+	var innerArray = [];
+	for (property in selectedCheck.desc) {
+		innerArray.push(selectedCheck.desc[property]);
+	}
+	
+	//for... to decide wich image to put.
+	htmlInterno=htmlInterno+"<p style=\"padding-left:3%;\">";
+	for (var i = 0, len = innerArray.length; i < len; ++i){
+	if (innerArray[i][1]=="true") imgAux=imgOk;
+		else  if (innerArray[i][1]=="should")imgAux=imgWrongShould;
+			else imgAux=imgWrong;
+	htmlInterno=htmlInterno+imgAux+innerArray[i][0]+'<br><br>';
+	}
+	htmlInterno=htmlInterno+"</p>";
+	
+	document.getElementById("snapshotEval1").innerHTML=htmlInterno;
+	$("#leftBox").hide("fast");
+	$("#snapshotInfo").hide("fast");
+	$("#snapshotEval").hide("fast");
+	$("#snapshotEval1").hide("fast");
+	$("#snapshotEval1").show("slow");
+}
+</script>
+
+<script>
+function compareChecklist2(numSelected){
+var selectedCheck = globalJSON.eval[numSelected];
+
+	document.getElementById("snapshotEval2").style.width = "48%";
+	document.getElementById("snapshotEval2").style.float = "right";
+	document.getElementById("snapshotEval2").style.marginRight = "10px";
+	document.getElementById("snapshotEval2").style.background = "rgba(200, 130, 130, 0.1)";
+	document.getElementById("snapshotEval2").style.borderRadius = "1em";
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Checklist Report B</h2>";
+	var f = selectedCheck.date.split(",");
+	htmlInterno=htmlInterno+"<p align=\"center\"style=\"font-size:12px\">"+"Date, time: "+parseInt(f[0])+"/"+parseInt(f[1])+"/"+parseInt(f[2])+", "+parseInt(f[3])+":"+parseInt(f[4])+"h</p><br>";
+	
+	//images
+	var imgAux;
+	var imgOk="<IMG SRC=\"images/ok1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrong="<IMG SRC=\"images/wrong2.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrongShould="<IMG SRC=\"images/wrong1.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	
+	//insert properties into array
+	var innerArray = [];
+	for (property in selectedCheck.desc) {
+		innerArray.push(selectedCheck.desc[property]);
+	}
+	
+	//for... to decide wich image to put.
+	htmlInterno=htmlInterno+"<p style=\"padding-left:3%;\">";
+	for (var i = 0, len = innerArray.length; i < len; ++i){
+	if (innerArray[i][1]=="true") imgAux=imgOk;
+		else  if (innerArray[i][1]=="should")imgAux=imgWrongShould;
+			else imgAux=imgWrong;
+	htmlInterno=htmlInterno+imgAux+innerArray[i][0]+'<br><br>';
+	}
+	htmlInterno=htmlInterno+"</p>";
+	
+	document.getElementById("snapshotEval2").innerHTML=htmlInterno;
+	$("#snapshotEval2").hide("fast");
+	$("#snapshotEval2").show("slow");
+	globalSelectedChecklist1="empty";//la próxima vez que seleccionemos se empezamos de 0
+}
+</script>
+<!------------------------------------------------------------------------------------------------------------------------->
+
+<!-- Cambios Snapshot ----------------------------------------------------------------------------------------------------->
+<script>
+function snapshotGr(json) {
+    var chart;
+	$("#leftBox").hide("fast");
+	$("#leftBox").show("slow");
+	document.getElementById("leftBox").style.height = "150px";
+	document.getElementById("leftBox").style.width = "40%";
+	document.getElementById("leftBox").style.float = "right";
+	document.getElementById("leftBox").style.paddingBottom = "20px";
+	var chartData = [];
+	var numAdd= 0;
+	var numMod= 0;
+	var numRem= 0;
+	
+	if (json.additions!=null) numAdd=json.additions.resource.length;
+	if (json.modifications!=null) numMod=json.modifications.resource.length;
+	if (json.removals!=null) numRem=json.removals.resource.length;
+	
+	chartData[0]=['Additions',parseFloat(numAdd)];
+	chartData[1]=['Modifications',parseFloat(numMod)];		
+	chartData[2]=['Removals',parseFloat(numRem)];
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'leftBox',
+                backgroundColor: '#f1f8ff',
+				borderColor: '#000000',
+				borderWidth: 1,
+                plotShadow: false
+            },
+            title: {
+                text: 'Types of changes'
+            },
+			credits: {
+				href: 'http://www.wf4ever-project.org/',
+				text: 'Wf4Ever'
+			},
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+						distance: 10,
+						softConnector: false,
+                        color: '#000000',
+                        connectorColor: '#000000',
+						verticalAlign: 'bottom',
+                        formatter: function() {
+							if (this.y> 0)
+                            return '<b>'+ this.point.name +'</b>:'+ this.y ;
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Percentage',
+                data: chartData
+            }]
+        });
+    });
+	
+};
+
+</script>
+<!-- User Eval ---------------------------------------------------------------------------------------------------------->
+<script>
+function usersEvalGr() {
+    var chart;
+	document.getElementById("usersEval").style.height = "250px";
+	document.getElementById("usersEval").style.width = "55%";
+	//document.getElementById("usersEval").style.marginRight = "5%";
+	document.getElementById("usersEval").style.float = "right";
+	document.getElementById("usersEval").style.paddingBottom = "20px";
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'usersEval',
+                type: 'column',
+				backgroundColor: '#f1f8ff',
+				borderColor: '#000000',
+				borderWidth: 1
+            },
+            title: {
+                text: 'Users Evaluation'
+            },
+			credits: {
+				href: 'http://www.wf4ever-project.org/',
+				text: 'Wf4Ever'
+			},
+            xAxis: {
+                categories: [
+                    'Personal score',
+                    'Project score'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null,
+                title: {
+                    text: 'Score (0-1)'
+                },
+                plotBands: [{ // Clumsy
+                    from: 0.0,
+                    to: 0.25,
+                    color: '#FFC9CA',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Clumsy',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Bad
+                    from: 0.25,
+                    to: 0.5,
+                    color: '#FFEDEE',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Bad',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Good
+                    from: 0.5,
+                    to: 0.75,
+                    color: '#edf7ff',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Good',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Great
+                    from: 0.75,
+                    to: 1,
+                    color: '#d8eeff',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Great',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: usersEvaluationList
+        });
+    });
+    
+};
+</script>
+<!-- GRï¿½FICA PRINCIPAL----------------------------------------------------------------------------------------------------->
+<script>
+function grafica(){
+	$(document).ready(function() {
+	chart = new Highcharts.StockChart({
+	    
+	    chart: {
+	        renderTo: 'container',
+			backgroundColor: '#f1f8ff',
+			borderColor: '#000000',
+			marginTop: 80
+	    },
+		
+		title: {
+            text: '<b>Decay Monitoring</b><br>Stability Value(0-1)='+stabilityValue+",  Average Checklist Value(0-1)="+avgValue//'Number of changes and checklist evaluation'
+        },
+		subtitle: {
+            //text: '<a href="'+global_roURI+'" target="_blank">'+global_roURI+'</a>'
+			text: '<br><br>'+global_roURI
+		},
+		credits: {
+			href: 'http://www.wf4ever-project.org/',
+			text: 'Wf4Ever'
+		},
+	    
+	    rangeSelector: {
+	    	selected: 1
+	    },
+		
+		xAxis: {
+        	type: 'datetime',
+        	dateTimeLabelFormats: {
+				day: '%Y<br/>%m-%d',
+				week: '%Y<br/>%m-%d',
+				month: '%Y-%m',
+				year: '%Y'
+			}
+    	},
+		yAxis: {
+			min: 0
+		},
+	    series: [{
+	        name: 'Checklist evaluation',
+			cursor: 'pointer',
+	        data: checklistTrace,
+			marker : {
+					enabled : true,
+					radius : 3
+				},
+				shadow : true,
+			point:{
+				events: { click: function() {
+									if (document.getElementById("optionChecklist").value == "single"){
+										globalSelectedChecklist1="empty";
+										evalList(this.index);
+										getSnapshotService(this.index);
+										} else  if (globalSelectedChecklist1=="empty") {
+										globalSelectedChecklist1=this.index;
+										compareChecklist1(this.index);
+										}
+												else {
+												compareChecklist2(this.index);
+												}
+								}
+				}
+			},
+			id : 'dataseries'
+			},
+			{
+				type : 'flags',
+				data : snapshotsTrace,
+				onSeries : 'dataseries',
+				shape : 'circlepin',
+				width : 16
+				/*events: {
+                click: function(event) {
+					window.open(this.data[0].text, '_blank');
+					return false;
+					//alert(this.data[0].text);//getSnapshotService(this);
+					}
+				}*/
+
+			},
+			{
+				type : 'flags',
+				data : archivedTrace,
+				onSeries : 'dataseries',
+				shape : 'squarepin',
+				color : '#5F86B3',
+				fillColor : '#5F86B3',
+				width : 16,
+				/*events: {
+                click: function(event) {
+					window.open(this.data[0].text, '_blank');
+					return false;
+					//alert(this.data[0].text);//getSnapshotService(this);
+					}
+				},*/
+				style : {// text style
+					color : 'white'
+				},
+				states : {
+					hover : {
+						fillColor : '#395C84' // darker
+					}
+				}
+	    }]
+	});
+});
+}
+
+</script>
+<!-- LLAMADAS A SERVICIOS ----------------------------------------------------------------------------------------------------->
+<script>
+function getSnapshotService(numSelected){
+	var typeSelection;
+	if(globalJSON.eval[numSelected].link[0]!="empty"){
+		if (globalJSON.eval[numSelected].link[0]=="snapshot")typeSelection="Snapshoted RO";
+			else typeSelection="Archived RO";
+	
+	//var url = "http://localhost:8080/api/rest/getChangesInfo?RO="+globalJSON.eval[numSelected].link[1];
+	var url = "http://sandbox.wf4ever-project.org/decayMonitoring/rest/getChangesInfo?RO="+globalJSON.eval[numSelected].link[1];
+	console.log(url);
+	$.ajax({
+		url: url,
+		dataType: "json",
+		async:   false,
+        success: function(json) {
+			fillSnapshotInfo(json, typeSelection);
+			//snapshotGr(json);
+            },
+		error: function( error){
+			alert( "Error: getAnalytics service" );
+			}
+        }); 
+	}//end if
+	else {$("#snapshotInfo").hide("fast"); $("#leftBox").hide("fast");}
+}
+
+
+function fillEvaluationData(json){
+	if (json != null){
+		var aux=parseFloat(json.stabilityValue)*100;
+		stabilityValue = aux.toPrecision(4);
+		if (!jQuery.isArray(json.listElements))  json.listElements = [json.listElements];
+		$.each(json.listElements, function(i,elements){
+			aux=parseFloat(elements.value)*100;
+			checklistValuesList[i]=parseFloat(aux.toPrecision(4));
+		});
+		// Users
+		if (!jQuery.isArray(json.listUsers))  json.listUsers = [json.listUsers];
+		$.each(json.listUsers, function(i,elements){
+			var nameAux;
+			var value1;
+			var value2;
+			var dataAux =[];
+			value1 = (elements.probPositive-elements.probNegative+1)/2;
+			value2 = (elements.impactPositive-elements.impactNegative+1)/2;;
+			nameAux=elements.user;
+			dataAux = [value1, value2];
+			usersEvaluationList[i]={name:nameAux, data:dataAux};
+		});
+	}
+}
+
+function fillAnalyticsData(snapshots){
+	if (snapshots != null){ 
+		$.each(snapshots, function(i,sn){
+			$.each(sn, function(j,ob){
+				numOfChangesList[j]=parseFloat(ob.totals.totalChanges);
+				snapshotsList[j]="S"+j;
+			});
+		});
+	}
+}
+
+function callStabilityService(){
+	//var url = "http://localhost:8080/api/rest/getAnalytics?RO="+global_roURI;
+	var url = "http://sandbox.wf4ever-project.org/decayMonitoring/rest/getAnalytics?RO="+global_roURI;
+	console.log(url);
+	$.ajax({
+		url: url,
+		dataType: "json",
+		async:   false,
+        success: function(json) {
+			global_analytics=json;
+			fillAnalyticsData(json.snapshots);
+            },
+		error: function( error){
+			alert( "Error: getAnalytics service" );
+			}
+        }); 
+		
+	//url = "http://localhost:8080/api/rest/getStability?RO="+global_roURI;
+	url = "http://sandbox.wf4ever-project.org/decayMonitoring/rest/getStability?RO="+global_roURI;
+	console.log(url);
+	$.ajax({
+		url: url,
+		dataType: "json",
+		async:   false,
+        success: function(json) {
+			fillEvaluationData(json);
+            },
+		error: function( error){
+			alert( "Error: getStability service" );
+			}
+        }); 	
+
+}
+</script>
+
+<!-- GENERAL INFORMATION----------------------------------------------------------------------------------------------------->
+<script>
+function fillGeneralInfo(){
+	var lorem = "<p align=\"justify\" style=\"padding-left:5%;\">In this site you are able to analyze information about the evolution and evaluation of a RO.<br/>At the right of the screen you have user evaluations based on the quality of their snapshots. One of the evaluations represents the quality of the user and the other represents the impact of the user in the RO.<br/>The bottom chart compares the number of changes against quality for each snapshot, which can be clicked in order to get additional information.<br/>Finally, the Stability Value represents how stable has been the quality of the RO over time.</p>";
+	//document.getElementById("generalInfo").innerHTML=lorem+"<br/><h2 align=\"center\"><b> Stability Value: </b>"+stabilityValue+"%</h2>";
+	document.getElementById("generalInfo").innerHTML=lorem;
+	document.getElementById("generalInfo").style.float = "left";
+	document.getElementById("generalInfo").style.width = "42%";
+	
+}
+</script>
+<!----READ DOCU JSON---------------------------------------------------------------------------------------------------->
+<script>
+function readDocu(){
+	var aux='traceDemo07.txt'; //traceXX.txt es buena para ejemplos
+	if (selectedTrace=='long-term') aux='traceDemo07LongTerm.txt';
+	if (selectedTrace=='long-term2') aux='traceDemo07LongTerm.txt';
+		/*else if (selectedTrace=='http://sandbox.wf4ever-project.org/rodl/ROs/Y2Demo/2')aux='tracePruebaX.txt';
+			else aux=0;*/
+ $.ajax({ 
+      url: aux, 
+      type: 'get',
+	  async:   false,
+      error: function(data){ alert('Not trace found for the specified RO')}, 
+      success: function(data){ 
+		globalJSON = JSON.parse(data);
+		calculateStabilityValue();
+        fillTrace(globalJSON);
+      }
+    });
+}
+
+function fillTrace(json){
+	var aux = [];
+	
+	/*for(var i = 0, len = json.eval.length; i < len; ++i){
+	var aux2=[];
+	var n=json.eval[i].date.split(",");
+	aux2[0]=Date.UTC(parseInt(n[0]), parseInt(n[1])-1, parseInt(n[2]),parseInt(n[3]),parseInt(n[4]));
+	aux2[1]=Math.round(parseFloat(json.eval[i].value)*1000)/1000;
+	aux2[2]=i;
+	aux[i]=aux2;
+	}
+	checklistTrace=aux;
+	*/
+	var colour;
+	for(var i = 0, len = json.eval.length; i < len; ++i){
+		var n=json.eval[i].date.split(",");
+		if (json.eval[i].evalClass=="pass")colour = '#45b211';
+			else if (json.eval[i].evalClass=="must")colour = '#A52009';
+				else colour = '#ecd632';
+		var ob={
+			x: Date.UTC(parseInt(n[0]), parseInt(n[1])-1, parseInt(n[2]),parseInt(n[3]),parseInt(n[4])),
+			y: Math.round(parseFloat(json.eval[i].value)*1000)/1000,
+			index: i,
+			marker: {
+				fillColor:colour,
+				states : {
+					hover : {
+						enabled:true,
+						fillColor : colour // darker
+					}
+				}
+			}	
+		}
+		aux[i]=ob;
+	}
+	checklistTrace=aux;
+	
+	
+	
+	var localList = [];
+	var localList2 = [];
+	var num=0;
+	var num2=0;
+	for(var i = 0, len = json.eval.length; i < len; ++i){
+		if (json.eval[i].link[0] != "empty"){
+			if (json.eval[i].link[0]=="snapshot"){
+				num= num+1;
+				var t=json.eval[i].date.split(",");
+				var obj = {
+					x: Date.UTC(parseInt(t[0]), parseInt(t[1])-1, parseInt(t[2]),parseInt(t[3]),parseInt(t[4])),
+					title: "S"+num,
+					text: json.eval[i].link[1]
+				}
+			localList[num-1]=obj;
+			}
+			else if (json.eval[i].link[0]=="archived"){
+				num2= num2+1;
+				var t=json.eval[i].date.split(",");
+				var obj = {
+					x: Date.UTC(parseInt(t[0]), parseInt(t[1])-1, parseInt(t[2]),parseInt(t[3]),parseInt(t[4])),
+					title: "A"+num2,
+					text: json.eval[i].link[1]
+				}
+			localList2[num2-1]=obj;
+			}
+		}
+	}
+	snapshotsTrace = localList;
+	archivedTrace = localList2;
+}
+</script>
+<!-------- CALCULATE STABILITY -------------------------------------------------------------------------->
+<script>
+function calculateStabilityValue(){
+var av=0;;
+var varianza=0;
+var dt=0;
+var stab=0;
+	var aux=0;
+	for (var i=0; i<globalJSON.eval.length; i++){
+		aux=aux+parseFloat(globalJSON.eval[i].value);
+	}
+	av=aux/globalJSON.eval.length;
+	avgValue=Math.round(av*1000)/1000;
+	
+	aux=0;
+	for (var i=0; i<globalJSON.eval.length; i++){
+		aux=aux+Math.pow((parseFloat(globalJSON.eval[i].value)-av),2);
+	}
+	varianza=aux/globalJSON.eval.length;
+	dt=Math.sqrt(varianza);
+	
+	stab=1-(2*dt);
+	stabilityValue=Math.round(stab*1000)/1000;
+
+}
+</script>
+
+
+<!------------------------------------------------------------------------------------------------------->
+			
+	<script>
+		function processFormData(){
+		// ï¿½sto irï¿½ en el punto en el que se clicka una barra de snapshot.
+		
+		//
+		var queryString = window.top.location.search.substring(1);
+		queryString = decodeURIComponent(queryString);
+		global_roURI=queryString.replace("id=","")
+		selectedTrace=global_roURI;
+		//global_roURI=document.getElementById("text_roURI").value;
+		//selectedTrace = document.getElementById("text_roURI").value;
+		//document.getElementById("selectedRO").innerHTML="<p> Selected RO: "+global_roURI+"</p>";
+		// llamar al resto de funciones y al cargador de json.
+		//snapshotsList = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9'];
+		//numOfChangesList = [5, 2, 8, 3, 5, 7, 2, 3, 4];
+		//checklistValuesList = [10, 60, 30, 60, 90, 100, 60, 60, 100];
+		
+		/*callStabilityService();
+		fillGeneralInfo();
+		usersEvalGr();*/
+		readDocu();
+		grafica();
+		//
+		}
+	</script>
+
+
+
+</head>
+
+<body>
+
+   <!-- Begin Wrapper -->
+   <div id="wrapper">
+   
+         <!-- Begin Header -->
+         <div id="header">
+		       <h1 align="center" style="margin-top:10px;">RO Analytics and Quality Report</h1>	 
+		 </div>
+		 <!-- End Header -->
+		 
+		 <!-- Begin Content -->
+		 <div id="content">
+		 
+		    <!--<form align="center" onsubmit="return false;" name ="getRO" id="getRO_form" action="#">
+			<h3>URI: <input size="100" type="text" value="http://sandbox.wf4ever-project.org/rodl/ROs/Y2Demo/" name="roURI" id="text_roURI" />
+			<input type="button" name="submit" value="Submit" onclick="processFormData();"/></h3>
+			</form>-->
+			
+			<br>
+			<select name="optionChecklist" size="1" id="optionChecklist">
+				<option value="single">Single evaluation</option>
+				<option value="compare">Compare two evaluations</option>
+			</select>
+			
+			<div id="generalInfo">
+			</div>
+			<div id="usersEval">
+			</div>
+			<br>
+			<div id="container">
+			</div>
+			<br>
+			<div id="leftBox">
+			</div>
+			<div id="snapshotEval">
+			</div>
+			<div id="snapshotEval1">
+			</div>
+			<div id="snapshotEval2">
+			</div>
+			<div id="snapshotInfo">
+			</div>
+
+			   
+		 <div style='clear:both; width:100%'></div>
+		 </div>
+		 
+		 <!-- End Content -->
+		 
+		 <!-- Begin Footer -->
+		 
+		 <div id="footer" align="center">
+		       
+			   iSOCO 2012 - Wf4Ever		
+			    
+	     </div>
+		 <!-- End Footer -->
+		 
+   </div>
+   <!-- End Wrapper -->
+
+	<script>
+		processFormData();
+	</script> 
+   
+</body>
+</html>

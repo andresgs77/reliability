@@ -1,0 +1,71 @@
+<trace>
+<ro>http://sandbox.wf4ever-project.org/rodl/ROs/Pack401/</ro>
+<evaluations>
+<eval result="must">
+<date>2013,4,12,12,23</date>
+<rules>
+<rule type="should" pass="false">Experiment hypothesis is not present</rule>
+<rule type="should" pass="false">Workflow design sketch is not present</rule>
+<rule type="must" pass="false">No workflow definitions are present</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="false">Input data is not present</rule>
+<rule type="should" pass="false">Experiment conclusions are not present</rule>
+</rules>
+</eval>
+<eval result="must">
+<date>2013,4,13,12,27</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="false">Workflow design sketch is not present</rule>
+<rule type="must" pass="false">No workflow definitions are present</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="false">Input data is not present</rule>
+<rule type="should" pass="false">Experiment conclusions are not present</rule>
+</rules>
+</eval>
+<eval result="must">
+<date>2013,4,17,12,32</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="true">Workflow design sketch is present</rule>
+<rule type="must" pass="false">No workflow definitions are present</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="false">Input data is not present</rule>
+<rule type="should" pass="false">Experiment conclusions are not present</rule>
+</rules>
+</eval>
+<eval result="must">
+<date>2013,4,19,12,35</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="true">Workflow design sketch is present</rule>
+<rule type="must" pass="true">All workflow definitions are accessible</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="false">Input data is not present</rule>
+<rule type="should" pass="false">Experiment conclusions are not present</rule>
+</rules>
+</eval>
+<eval result="should">
+<date>2013,4,23,12,39</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="true">Workflow design sketch is present</rule>
+<rule type="must" pass="true">All workflow definitions are accessible</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="true">Input data is present</rule>
+<rule type="should" pass="false">Experiment conclusions are not present</rule>
+</rules>
+</eval>
+<eval result="pass">
+<date>2013,4,29,12,41</date>
+<rules>
+<rule type="should" pass="true">Experiment hypothesis is present</rule>
+<rule type="should" pass="true">Workflow design sketch is present</rule>
+<rule type="must" pass="true">All workflow definitions are accessible</rule>
+<rule type="must" pass="true">All web services used by workflows are accessible</rule>
+<rule type="must" pass="true">Input data is present</rule>
+<rule type="should" pass="true">Experiment conclusions are present</rule>
+</rules>
+</eval>
+</evaluations>
+</trace>

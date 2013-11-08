@@ -1,0 +1,29 @@
+<trace>
+<rouri>844</rouri>
+<evaluations>
+<eval evalresultclass="pass">
+<date>2013,5,9,15,17</date>
+<checklistitems>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources available</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources accessible</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources have not changed</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Input data available</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="true">Output data available</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="true">Execution environment available</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="true">Workflow description available</checklistitem>
+</checklistitems>
+</eval>
+<eval evalresultclass="should">
+<date>2014,4,24,15,17</date>
+<checklistitems>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources available</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources accessible</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Third party resources have not changed</checklistitem>
+<checklistitem itemlevel="must" itemsatisfied="true">Input data available</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="true">Output data available</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="false">Missing execution libraries</checklistitem>
+<checklistitem itemlevel="should" itemsatisfied="true">Workflow description available</checklistitem>
+</checklistitems>
+</eval>
+</evaluations>
+</trace>

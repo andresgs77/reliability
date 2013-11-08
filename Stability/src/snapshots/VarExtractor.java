@@ -1,0 +1,73 @@
+package snapshots;
+
+
+public class VarExtractor {
+	
+	public String SimpleExtract(String line){
+		String result=null;
+		
+		int begin=line.indexOf("<uri>")+5;
+		int end=line.lastIndexOf("</uri>");
+		result = line.substring(begin, end);
+		
+		return result;
+	}
+	
+	public boolean checkAppereance(String line, String param){
+		return line.contains("<binding name=\""+param+"\">");
+	}
+	
+	public boolean checkAppereanceXML(String line, String param){
+		return line.contains("<"+param+">");
+	}
+	
+	public boolean checkAppereanceResource(String line){
+		return line.contains("resource=\"");
+	}
+	
+	public String DatatypeExtract(String line){
+		String result=null;
+		int begin=line.indexOf("<literal datatype=\"http://www.w3.org/2001/XMLSchema#dateTime\">")+62;
+		int end=line.lastIndexOf("</literal>");
+		result = line.substring(begin, end);
+		
+		return result;
+	}
+	
+	public String DatatypeIntegerExtract(String line){
+		String result=null;
+		int begin=line.indexOf("<literal datatype=\"http://www.w3.org/2001/XMLSchema#integer\">")+61;
+		int end=line.lastIndexOf("</literal>");
+		result = line.substring(begin, end);
+		
+		return result;
+	}
+	
+	public String lineSpliter(String line, String word){
+		String aux=null;
+		String[] lines=line.split("<"+word+">");
+		for(int i=1; i<lines.length; i++){
+			String s=lines[i];
+			aux=aux+"<"+word+">"+s+"\n";
+		}
+		return aux;
+	}
+	
+	public String complexExtract(String line,String word){
+		String result=null;
+		
+		int begin=line.indexOf("<"+word+">")+word.length()+2;
+		int end=line.lastIndexOf("</"+word+">");
+		result = line.substring(begin, end);
+		
+		return result;
+	}
+	
+	public String resourceExtract(String line){
+		int n= line.indexOf("resource=\"");
+		line=line.substring(n);
+		String[] s=line.split("\"");
+		return s[1];
+	}
+
+}

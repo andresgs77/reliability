@@ -1,0 +1,1841 @@
+{
+   "liveRO":"http://sandbox.wf4ever-project.org/rodl/ROs/ExtragalacticRO",
+   "eval":[
+      {
+         "date":"2013,1,1,10,2",
+         "link":[
+            "empty"
+         ],
+         "value":"0.048",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is not present",
+               "should"
+            ],
+            "R2":[
+               "No workflow definitions are present",
+               "must"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,2,10,4",
+         "link":[
+            "empty"
+         ],
+         "value":"0.205",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is not present",
+               "should"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,3,10,6",
+         "link":[
+            "empty"
+         ],
+         "value":"0.602",
+         "evalClass":"should",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is not present",
+               "should"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,4,10,8",
+         "link":[
+            "empty"
+         ],
+         "value":"0.712",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,5,10,10",
+         "link":[
+             "empty"
+         ],
+         "value":"0.727",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,6,10,12",
+         "link":[
+            "empty"
+         ],
+         "value":"0.742",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+      {
+         "date":"2013,1,7,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.756",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,8,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.769",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,9,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.78",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,10,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.79",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,11,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.798",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,12,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.806",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,13,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.813",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,14,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.819",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,15,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.824",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,16,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.829",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	        {
+         "date":"2013,1,17,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.35",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	     {
+         "date":"2013,1,18,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.489",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,19,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.774",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,20,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.78",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,21,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.785",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,22,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.79",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,23,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.795",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	        {
+         "date":"2013,1,24,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.799",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  {
+         "date":"2013,1,25,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.803",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  {
+         "date":"2013,1,26,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.208",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+	  {
+         "date":"2013,1,27,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.209",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,1,28,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.729",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,1,29,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.733",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,1,30,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.738",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,1,31,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.742",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,1,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.746",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,2,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.75",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,3,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.754",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,4,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.758",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,5,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.761",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,6,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.764",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,7,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.768",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,8,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.771",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,9,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.774",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,10,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.206",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,11,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.727",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	   {
+         "date":"2013,2,12,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.195",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+	  	   {
+         "date":"2013,2,13,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.691",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	   {
+         "date":"2013,2,14,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.186",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "Some web services used by workflows are not accessible",
+               "must"
+            ],
+            "R5":[
+               "Input data is not present",
+               "must"
+            ]
+         }
+      },
+	  {
+         "date":"2013,2,15,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.662",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,16,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.665",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,17,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.669",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,18,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.672",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  {
+         "date":"2013,2,19,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.676",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	    {
+         "date":"2013,2,20,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.421",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow is not running",
+               "must"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  	  {
+         "date":"2013,2,21,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.673",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  	  {
+         "date":"2013,2,22,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.677",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      },
+	  	  	  {
+         "date":"2013,2,23,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.68",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment description is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow output is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow definitions are present",
+               "true"
+            ],
+			"R3":[
+               "Workflow running",
+               "true"
+            ],
+            "R4":[
+               "All web services used by workflows are accessible",
+               "true"
+            ],
+            "R5":[
+               "Input data is present",
+               "true"
+            ]
+         }
+      }
+   ]
+}

@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script src="highcharts.js"></script>
+<script src="exporting.js"></script>
+<title>Stability DEMO</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
+
+<script>
+ var global_roUI;
+ var snapshotsList;
+ var numOfChangesList;
+ var checklistValuesList;
+</script>
+<!-- Evaluación Snapshot ----------------------------------------------------------------------------------------------------->
+<script>
+function snapshotEvalList(){
+	document.getElementById("snapshotEval").style.width = "55%";
+	document.getElementById("snapshotEval").style.float = "left";
+	document.getElementById("snapshotEval").style.marginLeft = "10px";
+	document.getElementById("snapshotEval").style.background = "rgba(130, 130, 130, 0.1)";
+	var htmlInterno = "<h2 align=\"center\"style=\"padding-top:10px\">Snapshot checklist evaluation</h2><br>";
+	
+	var listaMust = ["Must check number 1", "Must check number 2", "Must check number 3"];
+	var listaMustOk = ["Ok", "No", "Ok"];
+	var listaShould = ["Should check number 1", "Should check number 2", "Should check number 3"];
+	var listaShouldOk = ["Ok", "Ok", "Ok"];
+	var listaMay = ["May check number 1", "May check number 2", "May check number 3", "May check number 4", "May check number 5"];
+	var listaMayOk = ["Ok", "Ok", "no", "no", "Ok"];
+	
+	var imgAux;
+	var imgOk="<IMG SRC=\"images/Ok.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	var imgWrong="<IMG SRC=\"images/Wrong.png\" ALIGN=\"left\" width=\"16\" height=\"16\">";
+	
+	// Éste bloque es la clave
+	htmlInterno = htmlInterno + imgWrong +"<h3>Must:</h3><br><p style=\"padding-left:3%;\">";
+	for(var i = 0, len = listaMust.length; i < len; ++i){
+		if (listaMustOk[i]=="Ok")imgAux=imgOk;
+			else imgAux=imgWrong;
+		htmlInterno = htmlInterno + imgAux + listaMust[i] + "<br>";
+	}
+	htmlInterno = htmlInterno + "</p><br>";
+	//
+	////////////////////////////////////////////////////////////////// Repetición para pruebas
+	htmlInterno = htmlInterno + imgOk +"<h3>Should:</h3><br><p style=\"padding-left:3%;\">";
+	for(var i = 0, len = listaShould.length; i < len; ++i){
+		if (listaShouldOk[i]=="Ok")imgAux=imgOk;
+			else imgAux=imgWrong;
+		htmlInterno = htmlInterno + imgAux + listaShould[i] + "<br>";
+	}
+	htmlInterno = htmlInterno + "</p><br>";
+	
+	htmlInterno = htmlInterno + imgWrong +"<h3>May:</h3><br><p style=\"padding-left:3%;\">";
+	for(var i = 0, len = listaMay.length; i < len; ++i){
+		if (listaMayOk[i]=="Ok")imgAux=imgOk;
+			else imgAux=imgWrong;
+		htmlInterno = htmlInterno + imgAux + listaMay[i] + "<br>";
+	}
+	htmlInterno = htmlInterno + "</p><br>";
+	/////////////////////////////////////////////////////////////////////////////////////////
+	
+	document.getElementById("snapshotEval").innerHTML=htmlInterno;
+	
+}
+</script>
+
+<!-- Cambios Snapshot ----------------------------------------------------------------------------------------------------->
+<script>
+function snapshotGr() {
+    var chart;
+	document.getElementById("leftBox").style.height = "150px";
+	document.getElementById("leftBox").style.width = "40%";
+	document.getElementById("leftBox").style.float = "right";
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'leftBox',
+                backgroundColor: '#f1f8ff',
+				borderColor: '#000000',
+				borderWidth: 1,
+                plotShadow: false
+            },
+            title: {
+                text: 'Types of changes'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
+                percentageDecimals: 1
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+						distance: 10,
+						softConnector: false,
+                        color: '#000000',
+                        connectorColor: '#000000',
+						verticalAlign: 'bottom',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>:'+ this.y ;
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Percentage',
+                data: [
+                    ['Additions',   45],
+                    ['Removals',    26],
+                    ['Modifications',8]
+                ]
+            }]
+        });
+    });
+};
+
+</script>
+<!-- User Eval ---------------------------------------------------------------------------------------------------------->
+<script>
+function usersEvalGr() {
+    var chart;
+	document.getElementById("usersEval").style.height = "250px";
+	document.getElementById("usersEval").style.width = "60%";
+	document.getElementById("usersEval").style.marginRight = "5%";
+	document.getElementById("usersEval").style.float = "right";
+	document.getElementById("usersEval").style.paddingBottom = "20px";
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'usersEval',
+                type: 'column',
+				backgroundColor: '#f1f8ff',
+				borderColor: '#000000',
+				borderWidth: 1
+            },
+            title: {
+                text: 'Users Evaluation'
+            },
+            xAxis: {
+                categories: [
+                    'Personal Mark',
+                    'Project Mark'
+                ]
+            },
+            yAxis: {
+                min: 0,
+                minorGridLineWidth: 0,
+                gridLineWidth: 0,
+                alternateGridColor: null,
+                title: {
+                    text: 'Mark (0-1)'
+                },
+                plotBands: [{ // Clumsy
+                    from: 0.0,
+                    to: 0.25,
+                    color: '#FFC9CA',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Clumsy',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Bad
+                    from: 0.25,
+                    to: 0.5,
+                    color: '#FFEDEE',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Bad',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Good
+                    from: 0.5,
+                    to: 0.75,
+                    color: '#edf7ff',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Good',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }, { // Great
+                    from: 0.75,
+                    to: 1,
+                    color: '#d8eeff',
+                    label: {
+                        //rotation:90,
+                        //y:-20, 
+                        text: 'Great',
+                        style: {
+                            color: '#606060'
+                        }
+                    }
+                }]
+            },
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y;
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+                series: [{
+                name: 'Mr. Clumsy',
+                data: [0.3, 0.4]
+    
+            }, {
+                name: 'Mr. Curator',
+                data: [0.9, 0.8]
+    
+            }]
+        });
+    });
+    
+};
+</script>
+<!-- GRÄFICA PRINCIPAL----------------------------------------------------------------------------------------------------->
+<script>
+function grafica() {
+    var chart;
+	//document.getElementById("container").style.width = "100%";
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                zoomType: 'xy',
+				backgroundColor: '#f1f8ff',
+				borderColor: '#000000',
+				borderWidth: 1
+            },
+            title: {
+                text: 'Number of changes and checklist evaluation'
+            },
+            subtitle: {
+                text: '<a href="http://example.com">'+global_roURI+'</a>'
+            },
+            xAxis: [{
+                categories: snapshotsList
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    formatter: function() {
+                        return this.value +'%';
+                    },
+                    style: {
+                        color: '#89A54E'
+                    }
+                },
+                title: {
+                    text: 'Checklist evaluation',
+                    style: {
+                        color: '#89A54E'
+                    }
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: 'Number of changes',
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                labels: {
+                    formatter: function() {
+                        return this.value +' changes';
+                    },
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                formatter: function() {
+                    return ''+
+                        this.x +': '+ this.y +
+                        (this.series.name == 'Number of changes' ? ' changes' : '%');
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 100,
+                verticalAlign: 'top',
+                y: 50,
+                floating: true,
+                backgroundColor: '#FFFFFF'
+            },
+            series: [{
+				cursor: 'pointer',
+                name: 'Number of changes',
+                color: '#4572A7',
+                type: 'column',
+                yAxis: 1,
+                data: numOfChangesList,
+				point: {
+                    events: {
+                        click: function() {
+							snapshotGr();
+							snapshotEvalList();
+                            //alert ('Category: '+ this.category +', value: '+ this.y);
+                        }
+                    }
+                }
+    
+            }, {
+                name: 'Checklist evaluation',
+                color: '#89A54E',
+                type: 'spline',
+                data: checklistValuesList
+            }]
+        });
+    });
+    
+};
+</script>
+<!-- PRUEBA LLAMADA SERVICIO ----------------------------------------------------------------------------------------------------->
+<script>
+function callStabilityService(){
+ var url = "http://localhost:8080/api/rest/getAnalytics?RO=http://purl.org/net/wf4ever/ro/wf74/";
+ console.log(url);
+ $.ajax({
+                 url: url,
+				 dataType: "json",
+                 success: function(json) {
+                    alert("pipo!!!");
+                 },
+				 error: function( error){
+					alert( error );
+				 }
+        });           
+
+}
+</script>
+
+<!-- GENERAL INFORMATION----------------------------------------------------------------------------------------------------->
+<script>
+function fillGeneralInfo(){
+	var stabilityValue=80;
+	var lorem = "<p align=\"justify\" style=\"padding-left:5%;\">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur...</p>";
+	document.getElementById("generalInfo").innerHTML=lorem+"<br/><h2 align=\"center\"><b> Stability Value: </b>"+stabilityValue+"</h2>";
+	document.getElementById("generalInfo").style.float = "left";
+	document.getElementById("generalInfo").style.width = "30%";
+	
+}
+</script>
+
+<!------------------------------------------------------------------------------------------------------->
+			
+	<script>
+		function processFormData(){
+		global_roURI=document.getElementById("text_roURI").value;
+		//document.getElementById("selectedRO").innerHTML="<p> Selected RO: "+global_roURI+"</p>";
+		// llamar al resto de funciones y al cargador de json.
+		snapshotsList = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6',
+                    'S7', 'S8', 'S9'];
+		numOfChangesList = [5, 2, 8, 3, 5, 7, 2, 3, 4];
+		checklistValuesList = [10, 60, 30, 60, 90, 100, 60, 60, 100];
+		fillGeneralInfo();
+		usersEvalGr();
+		grafica();
+		callStabilityService();
+		}
+	</script>
+
+
+
+</head>
+
+<body>
+
+   <!-- Begin Wrapper -->
+   <div id="wrapper">
+   
+         <!-- Begin Header -->
+         <div id="header">
+		       <h1 align="center" style="margin-top:20px;">Wf4Ever - Stability Service DEMO</h1>	 
+		 </div>
+		 <!-- End Header -->
+		 
+		 <!-- Begin Content -->
+		 <div id="content">
+		 
+		    <form align="center" onsubmit="return false;" name ="getRO" id="getRO_form" action="#">
+			<h3>URI: <input type="text" value="http://..." name="roURI" id="text_roURI" />
+			<input type="button" name="submit" value="Submit" onclick="processFormData();"/></h3>
+			</form>
+			<br>
+			
+			<div id="generalInfo">
+			</div>
+			<div id="usersEval">
+			</div>
+			<br>
+			<div id="container">
+			</div>
+			<br>
+			<div id="leftBox">
+			</div>
+			<div id="snapshotEval">
+			</div>
+
+			   
+		 <div style='clear:both; width:100%'></div>
+		 </div>
+		 
+		 <!-- End Content -->
+		 
+		 <!-- Begin Footer -->
+		 
+		 <div id="footer" align="center">
+		       
+			   iSOCO 2012 - Wf4Ever		
+			    
+	     </div>
+		 <!-- End Footer -->
+		 
+   </div>
+   <!-- End Wrapper -->
+
+   
+</body>
+</html>

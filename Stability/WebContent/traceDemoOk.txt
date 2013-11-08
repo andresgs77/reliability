@@ -1,0 +1,299 @@
+{
+   "liveRO":"http://sandbox.wf4ever-project.org/rodl/ROs/Y2DemoStep4/",
+   "eval":[
+      {
+         "date":"2013,2,13,10,10",
+         "link":[
+            "empty"
+         ],
+         "value":"0.43",
+         "evalClass":"must",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is not present",
+               "should"
+            ],
+            "R1":[
+               "Workflow design sketch is not present",
+               "should"
+            ],
+            "R2":[
+               "Workflow description is not present",
+               "must"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are not present",
+               "should"
+            ]
+         }
+      },
+      {
+         "date":"2013,2,13,10,12",
+         "link":[
+            "empty"
+         ],
+         "value":"0.65",
+         "evalClass":"should",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is not present",
+               "should"
+            ],
+            "R1":[
+               "Workflow design sketch is not present",
+               "should"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are not present",
+               "should"
+            ]
+         }
+      },
+      {
+         "date":"2013,2,13,10,14",
+         "link":[
+            "empty"
+         ],
+         "value":"0.733",
+         "evalClass":"should",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow design sketch is not present",
+               "should"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are not present",
+               "should"
+            ]
+         }
+      },
+      {
+         "date":"2013,2,13,10,16",
+         "link":[
+            "empty"
+         ],
+         "value":"0.817",
+         "evalClass":"should",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow design sketch is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are not present",
+               "should"
+            ]
+         }
+      },
+      {
+         "date":"2013,2,13,10,18",
+         "link":[
+            "snapshot","http://sandbox.wf4ever-project.org/rodl/ROs/Y2DemoStep19/"
+         ],
+         "value":"0.817",
+         "evalClass":"should",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow design sketch is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are not present",
+               "should"
+            ]
+         }
+      },
+      {
+         "date":"2013,2,13,10,20",
+         "link":[
+            "archived", "http://sandbox.wf4ever-project.org/rodl/ROs/Y2DemoStep27/"
+         ],
+         "value":"1.0",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow design sketch is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are present",
+               "true"
+            ]
+         }
+      },
+	{
+         "date":"2013,2,13,10,22",
+         "link":[
+            "empty"
+         ],
+         "value":"1.0",
+         "evalClass":"pass",
+         "desc":{
+            "R0":[
+               "Experiment hypothesis is present",
+               "true"
+            ],
+            "R1":[
+               "Workflow design sketch is present",
+               "true"
+            ],
+            "R2":[
+               "Workflow description is present",
+               "true"
+            ],
+            "R3":[
+               "All workflow definitions are accessible",
+               "true"
+            ],
+            "R4":[
+               "Workflow inputs are described",
+               "true"
+            ],
+            "R5":[
+               "Workflow inputs are all accessible",
+               "true"
+            ],
+            "R6":[
+               "Web services used are all accessible",
+               "true"
+            ],
+            "R7":[
+               "Experiment conclusions are present",
+               "true"
+            ]
+         }
+      }
+   ]
+}
